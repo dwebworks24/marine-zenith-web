@@ -4,74 +4,76 @@ import { Card, CardContent } from "@/components/ui/card";
 import HeroSlider from "@/components/HeroSlider";
 import ClientLogos from "@/components/ClientLogos";
 import {
-  Ship,
-  ClipboardCheck,
-  Shield,
-  Compass,
-  Wrench,
-  Search,
-  Droplet,
-  Box,
-  Ruler,
-  Leaf,
-  Award,
-  Lightbulb,
   Users,
-  TrendingUp,
+  Ship,
+  Award,
+  Shield,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import service1 from "@/assets/service-1.jpg";
+import service2 from "@/assets/service-2.jpg";
+import service3 from "@/assets/service-3.jpg";
+import service4 from "@/assets/service-4.jpg";
+import service5 from "@/assets/service-5.jpg";
+import service6 from "@/assets/service-6.jpg";
+import value1 from "@/assets/value-1.jpg";
+import value2 from "@/assets/value-2.jpg";
+import value3 from "@/assets/value-3.jpg";
+import value4 from "@/assets/value-4.jpg";
 
 const services = [
   {
-    icon: Ship,
+    image: service1,
     title: "Naval Architecture & Design",
     description: "Complete naval architecture services for all vessel types",
   },
   {
-    icon: ClipboardCheck,
+    image: service2,
     title: "Project Management",
     description: "Streamlined processes ensuring timely delivery",
   },
   {
-    icon: Shield,
+    image: service3,
     title: "Regulatory Compliance",
     description: "All Flag & IMO documentation and compliance",
   },
   {
-    icon: Compass,
+    image: service4,
     title: "Ship Design Optimization",
     description: "Performance optimization and fuel efficiency",
   },
   {
-    icon: Wrench,
+    image: service5,
     title: "Modification & Repair",
     description: "Expert technical support for vessel modifications",
   },
   {
-    icon: Search,
+    image: service6,
     title: "Marine Surveying",
     description: "Comprehensive vessel inspection services",
   },
 ];
 
 const stats = [
-  { icon: Users, number: 15, label: "Happy Clients", suffix: "+" },
-  { icon: Ship, number: 40, label: "Vessels Handled", suffix: "+" },
-  { icon: Award, number: 10, label: "Service Types", suffix: "+" },
-  { icon: Shield, number: 3, label: "ISO Certifications", suffix: "" },
+  { icon: Users, number: 15, label: "Happy Clients", suffix: "+", gradient: "from-blue-500 to-cyan-500" },
+  { icon: Ship, number: 40, label: "Vessels Handled", suffix: "+", gradient: "from-primary to-blue-600" },
+  { icon: Award, number: 10, label: "Service Types", suffix: "+", gradient: "from-secondary to-green-600" },
+  { icon: Shield, number: 3, label: "ISO Certifications", suffix: "", gradient: "from-amber-500 to-orange-600" },
 ];
 
 const values = [
-  { icon: Award, title: "Excellence", description: "Delivering high-quality services that exceed expectations" },
-  { icon: Lightbulb, title: "Innovation", description: "Embracing cutting-edge solutions for maritime challenges" },
-  { icon: TrendingUp, title: "Expertise", description: "Deep industry knowledge and technical proficiency" },
-  { icon: Users, title: "Client-Centric", description: "Your success is our priority" },
+  { image: value1, title: "Excellence", description: "Delivering high-quality services that exceed expectations" },
+  { image: value2, title: "Innovation", description: "Embracing cutting-edge solutions for maritime challenges" },
+  { image: value3, title: "Expertise", description: "Deep industry knowledge and technical proficiency" },
+  { image: value4, title: "Client-Centric", description: "Your success is our priority" },
 ];
 
 const Home = () => {
   const [counts, setCounts] = useState(stats.map(() => 0));
   const [hasAnimated, setHasAnimated] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
+  const [visibleServices, setVisibleServices] = useState<number[]>([]);
+  const [visibleValues, setVisibleValues] = useState<number[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -111,6 +113,48 @@ const Home = () => {
     return () => observer.disconnect();
   }, [hasAnimated]);
 
+  useEffect(() => {
+    const servicesObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute("data-index") || "0");
+            setTimeout(() => {
+              setVisibleServices((prev) => [...prev, index]);
+            }, index * 150);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const serviceCards = document.querySelectorAll(".service-card");
+    serviceCards.forEach((card) => servicesObserver.observe(card));
+
+    return () => servicesObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const valuesObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute("data-index") || "0");
+            setTimeout(() => {
+              setVisibleValues((prev) => [...prev, index]);
+            }, index * 200);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const valueCards = document.querySelectorAll(".value-card");
+    valueCards.forEach((card) => valuesObserver.observe(card));
+
+    return () => valuesObserver.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen">
       <HeroSlider />
@@ -119,14 +163,14 @@ const Home = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Welcome to Agile Marine Consultancy</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <h2 className="text-4xl font-bold mb-6 animate-fade-in">Welcome to Agile Marine Consultancy</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 animate-fade-in">
               We specialize in delivering innovative solutions and expert consultancy services tailored to the maritime
               industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to
               helping our clients navigate challenges and optimize their operations efficiently.
             </p>
             <Link to="/about">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 animate-fade-in">
                 Learn More About Us
               </Button>
             </Link>
@@ -146,25 +190,41 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {services.map((service, index) => (
-              <Card
+              <div
                 key={index}
-                className="card-hover border-none shadow-md"
-                style={{ animationDelay: `${index * 100}ms` }}
+                data-index={index}
+                className={`service-card transition-all duration-700 ${
+                  visibleServices.includes(index)
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-12"
+                }`}
               >
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-7 w-7 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
+                <Card className="group border-none shadow-md overflow-hidden h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                  <CardContent className="p-0">
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/50 to-transparent" />
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-500" />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground">{service.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
 
           <div className="text-center">
             <Link to="/services">
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="hover:scale-105 transition-transform">
                 View All Services
               </Button>
             </Link>
@@ -173,7 +233,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Why Choose Agile Marine Consultancy</h2>
@@ -184,34 +244,57 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="card-hover border-none shadow-md">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-4">
-                    <value.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm">{value.description}</p>
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                data-index={index}
+                className={`value-card transition-all duration-700 ${
+                  visibleValues.includes(index)
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : "opacity-0 translate-y-12 scale-95"
+                }`}
+              >
+                <Card className="group border-none shadow-md overflow-hidden h-full hover:shadow-2xl transition-all duration-500">
+                  <CardContent className="p-0">
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={value.image}
+                        alt={value.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/60 to-transparent" />
+                      <div className="absolute inset-0 flex items-end p-6">
+                        <div className="text-white">
+                          <h3 className="text-2xl font-bold mb-2">{value.title}</h3>
+                          <p className="text-sm opacity-90">{value.description}</p>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-500" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Statistics Counter */}
-      <section ref={statsRef} className="py-20 bg-accent text-accent-foreground">
-        <div className="container mx-auto px-4">
+      <section ref={statsRef} className="py-20 bg-gradient-to-br from-navy-dark to-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 wave-animation" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="h-10 w-10 text-primary" />
+              <div key={index} className="text-center group">
+                <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mx-auto mb-6 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl`}>
+                  <stat.icon className="h-12 w-12 text-white" />
                 </div>
-                <div className="text-5xl font-bold mb-2">
+                <div className="text-6xl font-bold mb-3 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                   {counts[index]}
                   {stat.suffix}
                 </div>
-                <div className="text-lg opacity-90">{stat.label}</div>
+                <div className="text-xl opacity-90 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -228,14 +311,14 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
               Ready to Navigate Your Maritime Challenges?
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 opacity-90 animate-fade-in">
               Let's discuss how we can help optimize your maritime operations
             </p>
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg px-8">
+              <Button size="lg" variant="secondary" className="text-lg px-8 hover:scale-105 transition-transform animate-fade-in">
                 Get Started Today
               </Button>
             </Link>

@@ -33,6 +33,8 @@ import {
   Box,
   Ship,
 } from "lucide-react";
+import stakeholdersImage from "@/assets/stakeholders-diagram.jpg";
+import teamPhoto from "@/assets/team-photo.jpg";
 
 const values = [
   {
@@ -91,37 +93,31 @@ const stakeholders = [
   {
     name: "Commercial Owners",
     icon: Briefcase,
-    angle: 0,
     description: "Partnering with commercial vessel owners for operational excellence",
   },
   {
     name: "Classification Societies",
     icon: Shield,
-    angle: 60,
     description: "Working with major classification societies for compliance",
   },
   {
     name: "Private Owners",
     icon: Users,
-    angle: 120,
     description: "Supporting private yacht and vessel owners",
   },
   {
     name: "Shipping Agents",
     icon: Target,
-    angle: 180,
     description: "Collaborating with shipping agents worldwide",
   },
   {
     name: "Shipyards",
     icon: Factory,
-    angle: 240,
     description: "Technical support for shipyard operations",
   },
   {
     name: "Flags & Government",
     icon: Flag,
-    angle: 300,
     description: "Regulatory compliance with flag states and authorities",
   },
 ];
@@ -159,21 +155,30 @@ const About = () => {
           <nav className="text-sm mb-4 opacity-90">
             <Link to="/" className="hover:underline">Home</Link> &gt; About Us
           </nav>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">About Agile Marine Consultancy</h1>
-          <p className="text-xl md:text-2xl opacity-90">Your Trusted Partner in Maritime Excellence</p>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in">About Agile Marine Consultancy</h1>
+          <p className="text-xl md:text-2xl opacity-90 animate-fade-in">Your Trusted Partner in Maritime Excellence</p>
         </div>
       </section>
 
       {/* Company Introduction */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              At Agile Marine Consultancy, we specialize in delivering innovative solutions and expert consultancy services tailored to the maritime industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to helping our clients navigate challenges and optimize their operations efficiently.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Our team comprises seasoned professionals with extensive experience across various facets of marine operations, including project management, technical consultancy, regulatory compliance, safety and risk management, and environmental sustainability. Whether you are a shipping company, port authority, or maritime service provider, we are dedicated to supporting your business goals and navigating challenges together with you.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="animate-fade-in">
+              <img
+                src={teamPhoto}
+                alt="Agile Marine Team"
+                className="rounded-2xl shadow-2xl w-full h-auto hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="animate-fade-in">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                At Agile Marine Consultancy, we specialize in delivering innovative solutions and expert consultancy services tailored to the maritime industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to helping our clients navigate challenges and optimize their operations efficiently.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our team comprises seasoned professionals with extensive experience across various facets of marine operations, including project management, technical consultancy, regulatory compliance, safety and risk management, and environmental sustainability. Whether you are a shipping company, port authority, or maritime service provider, we are dedicated to supporting your business goals and navigating challenges together with you.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -182,7 +187,7 @@ const About = () => {
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Card className="card-hover border-none shadow-md bg-gradient-to-br from-primary/10 to-primary/5">
+            <Card className="card-hover border-none shadow-md bg-gradient-to-br from-primary/10 to-primary/5 animate-fade-in">
               <CardContent className="p-8">
                 <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
                   <Target className="h-8 w-8 text-primary" />
@@ -194,7 +199,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-hover border-none shadow-md bg-gradient-to-br from-secondary/10 to-secondary/5">
+            <Card className="card-hover border-none shadow-md bg-gradient-to-br from-secondary/10 to-secondary/5 animate-fade-in">
               <CardContent className="p-8">
                 <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-6">
                   <Eye className="h-8 w-8 text-secondary" />
@@ -212,61 +217,36 @@ const About = () => {
       {/* Stakeholder Network */}
       <section className="py-20 bg-gradient-to-br from-navy-dark to-primary text-white relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl font-bold mb-4">Our Stakeholder Network</h2>
             <p className="text-xl opacity-90">Building Strong Partnerships Across the Maritime Industry</p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto h-[600px] flex items-center justify-center">
-            {/* Center Node */}
-            <div className="absolute z-20 w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl animate-pulse-glow">
-              <div className="text-center">
-                <Ship className="h-12 w-12 mx-auto mb-2" />
-                <div className="font-bold text-sm">Agile Marine</div>
-                <div className="text-xs opacity-90">Consultancy</div>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="animate-fade-in">
+              <img
+                src={stakeholdersImage}
+                alt="Stakeholders Network Diagram"
+                className="rounded-2xl shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-500"
+              />
             </div>
-
-            {/* Orbiting Stakeholders */}
-            {stakeholders.map((stakeholder, index) => (
-              <div
-                key={index}
-                className="absolute w-40 h-40"
-                style={{
-                  transform: `rotate(${stakeholder.angle}deg) translateX(280px) rotate(-${stakeholder.angle}deg)`,
-                }}
-              >
-                <Card className="w-full h-full border-2 border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-110 cursor-pointer">
-                  <CardContent className="p-4 h-full flex flex-col items-center justify-center text-center">
-                    <stakeholder.icon className="h-10 w-10 mb-2" />
-                    <div className="font-semibold text-sm">{stakeholder.name}</div>
+            
+            <div className="grid grid-cols-2 gap-4 animate-fade-in">
+              {stakeholders.map((stakeholder, index) => (
+                <Card
+                  key={index}
+                  className="border-2 border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-105 cursor-pointer group"
+                >
+                  <CardContent className="p-6 text-center">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <stakeholder.icon className="h-8 w-8" />
+                    </div>
+                    <div className="font-semibold text-sm mb-2">{stakeholder.name}</div>
+                    <p className="text-xs opacity-75">{stakeholder.description}</p>
                   </CardContent>
                 </Card>
-              </div>
-            ))}
-
-            {/* Connection Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
-              {stakeholders.map((_, index) => {
-                const angle = (stakeholders[index].angle * Math.PI) / 180;
-                const radius = 280;
-                const x = 50 + (radius * Math.cos(angle - Math.PI / 2)) / 10;
-                const y = 50 + (radius * Math.sin(angle - Math.PI / 2)) / 10;
-                return (
-                  <line
-                    key={index}
-                    x1="50%"
-                    y1="50%"
-                    x2={`${x}%`}
-                    y2={`${y}%`}
-                    stroke="white"
-                    strokeWidth="1"
-                    strokeDasharray="5,5"
-                    opacity="0.3"
-                  />
-                );
-              })}
-            </svg>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -383,12 +363,12 @@ const About = () => {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/services">
-              <Button size="lg" variant="secondary">
+              <Button size="lg" variant="secondary" className="hover:scale-105 transition-transform">
                 Explore Services
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-transform">
                 Contact Us
               </Button>
             </Link>

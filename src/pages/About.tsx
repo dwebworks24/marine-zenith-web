@@ -23,18 +23,14 @@ import {
   PenTool,
   Eye,
   Medal,
-  Briefcase,
-  Flag,
-  Factory,
   FileText,
   BarChart,
   Pencil,
   Waves,
   Box,
-  Ship,
 } from "lucide-react";
-import stakeholdersImage from "@/assets/stakeholders-diagram.jpg";
 import teamPhoto from "@/assets/team-photo.jpg";
+import StakeholdersHexagon from "@/components/StakeholdersHexagon";
 
 const values = [
   {
@@ -89,38 +85,6 @@ const values = [
   },
 ];
 
-const stakeholders = [
-  {
-    name: "Commercial Owners",
-    icon: Briefcase,
-    description: "Partnering with commercial vessel owners for operational excellence",
-  },
-  {
-    name: "Classification Societies",
-    icon: Shield,
-    description: "Working with major classification societies for compliance",
-  },
-  {
-    name: "Private Owners",
-    icon: Users,
-    description: "Supporting private yacht and vessel owners",
-  },
-  {
-    name: "Shipping Agents",
-    icon: Target,
-    description: "Collaborating with shipping agents worldwide",
-  },
-  {
-    name: "Shipyards",
-    icon: Factory,
-    description: "Technical support for shipyard operations",
-  },
-  {
-    name: "Flags & Government",
-    icon: Flag,
-    description: "Regulatory compliance with flag states and authorities",
-  },
-];
 
 const team = [
   { role: "Managing Director", count: 1, icon: Crown },
@@ -214,42 +178,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stakeholder Network */}
-      <section className="py-20 bg-gradient-to-br from-navy-dark to-primary text-white relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl font-bold mb-4">Our Stakeholder Network</h2>
-            <p className="text-xl opacity-90">Building Strong Partnerships Across the Maritime Industry</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="animate-fade-in">
-              <img
-                src={stakeholdersImage}
-                alt="Stakeholders Network Diagram"
-                className="rounded-2xl shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4 animate-fade-in">
-              {stakeholders.map((stakeholder, index) => (
-                <Card
-                  key={index}
-                  className="border-2 border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-105 cursor-pointer group"
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                      <stakeholder.icon className="h-8 w-8" />
-                    </div>
-                    <div className="font-semibold text-sm mb-2">{stakeholder.name}</div>
-                    <p className="text-xs opacity-75">{stakeholder.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Stakeholder Network - Hexagonal Diagram */}
+      <StakeholdersHexagon />
 
       {/* Core Values */}
       <section className="py-20 bg-background">

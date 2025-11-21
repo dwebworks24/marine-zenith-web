@@ -3,24 +3,25 @@ import { useEffect, useRef, useState } from "react";
 interface Service {
   name: string;
   color: string;
-  position: { x: number; y: number };
+  angle: number; // degrees
 }
 
 const services: Service[] = [
-  { name: "Project Management", color: "bg-marine-green", position: { x: 50, y: 0 } },
-  { name: "Naval Architecture", color: "bg-ocean-blue", position: { x: 93.3, y: 25 } },
-  { name: "Surveying & Inspections", color: "bg-yellow-500", position: { x: 93.3, y: 75 } },
-  { name: "Green Technology & Sustainable Shipping", color: "bg-marine-green", position: { x: 75, y: 93.3 } },
-  { name: "Ballast Water Treatment & Retrofits", color: "bg-ocean-blue", position: { x: 25, y: 93.3 } },
-  { name: "Production Drawings", color: "bg-marine-green", position: { x: 6.7, y: 75 } },
-  { name: "3D Twins of Ships & Rigs", color: "bg-yellow-500", position: { x: 6.7, y: 25 } },
-  { name: "All Regulatory Compliance Documentation", color: "bg-orange-500", position: { x: 25, y: 6.7 } },
-  { name: "Modification & Repairs", color: "bg-yellow-500", position: { x: 75, y: 6.7 } },
-  { name: "Ship Design & Optimization", color: "bg-ocean-blue", position: { x: 37.5, y: 12.5 } },
+  { name: "Project Management", color: "bg-marine-green", angle: 0 },
+  { name: "Naval Architecture", color: "bg-ocean-blue", angle: 36 },
+  { name: "Surveying & Inspections", color: "bg-yellow-500", angle: 72 },
+  { name: "Green Technology & Sustainable Shipping", color: "bg-marine-green", angle: 108 },
+  { name: "Ballast Water Treatment & Retrofits", color: "bg-ocean-blue", angle: 144 },
+  { name: "Production Drawings", color: "bg-marine-green", angle: 180 },
+  { name: "3D Twins of Ships & Rigs", color: "bg-yellow-500", angle: 216 },
+  { name: "All Regulatory Compliance Documentation", color: "bg-orange-500", angle: 252 },
+  { name: "Modification & Repairs", color: "bg-yellow-500", angle: 288 },
+  { name: "Ship Design & Optimization", color: "bg-ocean-blue", angle: 324 },
 ];
 
 const ServicesCircle = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [centerVisible, setCenterVisible] = useState(false);
+  const [linesVisible, setLinesVisible] = useState(false);
   const [visibleServices, setVisibleServices] = useState<number[]>([]);
   const [hoveredService, setHoveredService] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,18 +29,23 @@ const ServicesCircle = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !isVisible) {
-          setIsVisible(true);
+        if (entries[0].isIntersecting && !centerVisible) {
+          // Phase 1: Center appears (0-600ms)
+          setCenterVisible(true);
           
-          // Center circle appears first
+          // Phase 2: Lines appear (600-1000ms)
           setTimeout(() => {
-            // Then services appear one by one
+            setLinesVisible(true);
+          }, 600);
+          
+          // Phase 3: Circles appear sequentially (1000ms+, 150ms between each)
+          setTimeout(() => {
             services.forEach((_, index) => {
               setTimeout(() => {
                 setVisibleServices((prev) => [...prev, index]);
-              }, index * 200);
+              }, index * 150); // 0.15 second delay between each
             });
-          }, 500);
+          }, 1000);
         }
       },
       { threshold: 0.3 }
@@ -50,7 +56,16 @@ const ServicesCircle = () => {
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, [centerVisible]);
+
+  const getCirclePosition = (angle: number, radius: number) => {
+    const radian = (angle - 90) * (Math.PI / 180); // -90 to start from top
+    const x = 50 + radius * Math.cos(radian);
+    const y = 50 + radius * Math.sin(radian);
+    return { x, y };
+  };
+
+  const radius = 38; // percentage radius from center
 
   return (
     <section ref={sectionRef} className="py-20 bg-gradient-to-br from-background via-muted/30 to-background overflow-hidden">
@@ -63,16 +78,19 @@ const ServicesCircle = () => {
         </div>
 
         <div className="relative w-full max-w-5xl mx-auto" style={{ aspectRatio: '1' }}>
-          {/* Center Circle */}
+          {/* Center Ellipse */}
           <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ${
-              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-600 ease-out ${
+              centerVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
           >
             <div className="relative">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-ocean-blue to-primary flex items-center justify-center shadow-2xl animate-pulse-glow">
-                <div className="text-center px-4">
-                  <p className="text-white font-bold text-xs md:text-base leading-tight">
+              <div 
+                className="rounded-full bg-gradient-to-br from-ocean-blue to-primary flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-all duration-300"
+                style={{ width: '250px', height: '180px' }}
+              >
+                <div className="text-center px-6">
+                  <p className="text-white font-bold text-sm md:text-base leading-tight">
                     AGILE MARINE
                     <br />
                     CONSULTANCY
@@ -83,28 +101,30 @@ const ServicesCircle = () => {
           </div>
 
           {/* Connection Lines */}
-          {isVisible && services.map((service, index) => {
+          {linesVisible && services.map((service, index) => {
             const isServiceVisible = visibleServices.includes(index);
+            const pos = getCirclePosition(service.angle, radius);
             const centerX = 50;
             const centerY = 50;
-            const angle = Math.atan2(service.position.y - centerY, service.position.x - centerX);
+            const angle = Math.atan2(pos.y - centerY, pos.x - centerX);
             const length = Math.sqrt(
-              Math.pow(service.position.x - centerX, 2) + 
-              Math.pow(service.position.y - centerY, 2)
+              Math.pow(pos.x - centerX, 2) + 
+              Math.pow(pos.y - centerY, 2)
             );
 
             return (
               <div
                 key={`line-${index}`}
-                className={`absolute top-1/2 left-1/2 origin-left transition-all duration-700 ${
+                className={`absolute top-1/2 left-1/2 origin-left transition-all duration-400 ${
                   isServiceVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-                } ${hoveredService === index ? "opacity-100" : "opacity-40"}`}
+                } ${hoveredService === index ? "opacity-100 shadow-glow" : "opacity-40"}`}
                 style={{
                   width: `${length}%`,
                   height: '2px',
-                  background: 'linear-gradient(90deg, #FF6B35 0%, transparent 100%)',
+                  background: 'linear-gradient(90deg, #FF6B35 0%, #FF6B35 100%)',
                   transform: `rotate(${angle}rad)`,
                   transformOrigin: 'left center',
+                  transition: 'all 400ms cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               />
             );
@@ -113,26 +133,28 @@ const ServicesCircle = () => {
           {/* Service Circles */}
           {services.map((service, index) => {
             const isServiceVisible = visibleServices.includes(index);
+            const pos = getCirclePosition(service.angle, radius);
             
             return (
               <div
                 key={index}
-                className={`absolute transition-all duration-700 ${
+                className={`absolute transition-all duration-500 ${
                   isServiceVisible
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-0"
+                    ? "opacity-100 scale-100 rotate-0"
+                    : "opacity-0 scale-0 rotate-[10deg]"
                 } ${hoveredService === index ? "z-20 scale-110" : "z-10"}`}
                 style={{
-                  top: `${service.position.y}%`,
-                  left: `${service.position.x}%`,
+                  top: `${pos.y}%`,
+                  left: `${pos.x}%`,
                   transform: 'translate(-50%, -50%)',
+                  transitionDelay: isServiceVisible ? '0ms' : '0ms',
+                  transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
                 }}
                 onMouseEnter={() => setHoveredService(index)}
                 onMouseLeave={() => setHoveredService(null)}
               >
                 <div
-                  className={`w-24 h-24 md:w-32 md:h-32 rounded-full ${service.color} flex items-center justify-center shadow-xl cursor-pointer transition-all duration-300 hover:shadow-2xl animate-float`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className={`w-28 h-28 md:w-36 md:h-36 rounded-full ${service.color} flex items-center justify-center shadow-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:brightness-110`}
                 >
                   <p className="text-white font-semibold text-xs md:text-sm text-center px-3 leading-tight">
                     {service.name}
@@ -140,7 +162,7 @@ const ServicesCircle = () => {
                 </div>
                 
                 {hoveredService === index && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white px-4 py-2 rounded-lg shadow-lg whitespace-nowrap z-30 animate-fade-in">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 bg-white px-4 py-2 rounded-lg shadow-lg whitespace-nowrap z-30 animate-fade-in">
                     <p className="text-sm font-medium text-foreground">{service.name}</p>
                   </div>
                 )}

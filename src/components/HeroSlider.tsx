@@ -57,18 +57,18 @@ const HeroSlider = () => {
             <div className="absolute inset-0 bg-black/30" />
           </div>
 
-          <div className="relative h-full flex items-center justify-center px-4">
-            <div className="max-w-4xl text-center text-white animate-fade-in mx-auto px-8 md:px-20">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
+          <div className="relative h-full flex items-center px-4 md:px-20 lg:px-32">
+            <div className="max-w-4xl text-white animate-fade-in" style={{ paddingLeft: '10%' }}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in text-left">
                 {index === 0 ? "Navigating Excellence, Engineering Innovation" : slide.title}
               </h1>
-              <p className="text-xl md:text-2xl lg:text-3xl mb-8 animate-fade-in opacity-90">
+              <p className="text-xl md:text-2xl mb-8 animate-fade-in opacity-90 text-left">
                 {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}
               </p>
               {index === 0 && (
-                <div className="flex flex-wrap gap-4 justify-center">
+                <div className="flex flex-wrap gap-4">
                   <Link to="/services">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:scale-105 transition-transform text-white shadow-lg">
                       Explore Services
                     </Button>
                   </Link>

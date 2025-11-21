@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import HeroSlider from "@/components/HeroSlider";
 import ClientLogos from "@/components/ClientLogos";
+import ServicesCircle from "@/components/ServicesCircle";
 import {
   Users,
   Ship,
@@ -10,49 +11,10 @@ import {
   Shield,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import service1 from "@/assets/service-1.jpg";
-import service2 from "@/assets/service-2.jpg";
-import service3 from "@/assets/service-3.jpg";
-import service4 from "@/assets/service-4.jpg";
-import service5 from "@/assets/service-5.jpg";
-import service6 from "@/assets/service-6.jpg";
 import value1 from "@/assets/value-1.jpg";
 import value2 from "@/assets/value-2.jpg";
 import value3 from "@/assets/value-3.jpg";
 import value4 from "@/assets/value-4.jpg";
-
-const services = [
-  {
-    image: service1,
-    title: "Naval Architecture & Design",
-    description: "Complete naval architecture services for all vessel types",
-  },
-  {
-    image: service2,
-    title: "Project Management",
-    description: "Streamlined processes ensuring timely delivery",
-  },
-  {
-    image: service3,
-    title: "Regulatory Compliance",
-    description: "All Flag & IMO documentation and compliance",
-  },
-  {
-    image: service4,
-    title: "Ship Design Optimization",
-    description: "Performance optimization and fuel efficiency",
-  },
-  {
-    image: service5,
-    title: "Modification & Repair",
-    description: "Expert technical support for vessel modifications",
-  },
-  {
-    image: service6,
-    title: "Marine Surveying",
-    description: "Comprehensive vessel inspection services",
-  },
-];
 
 const stats = [
   { icon: Users, number: 15, label: "Happy Clients", suffix: "+", gradient: "from-blue-500 to-cyan-500" },
@@ -72,7 +34,6 @@ const Home = () => {
   const [counts, setCounts] = useState(stats.map(() => 0));
   const [hasAnimated, setHasAnimated] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
-  const [visibleServices, setVisibleServices] = useState<number[]>([]);
   const [visibleValues, setVisibleValues] = useState<number[]>([]);
 
   useEffect(() => {
@@ -112,27 +73,6 @@ const Home = () => {
 
     return () => observer.disconnect();
   }, [hasAnimated]);
-
-  useEffect(() => {
-    const servicesObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute("data-index") || "0");
-            setTimeout(() => {
-              setVisibleServices((prev) => [...prev, index]);
-            }, index * 150);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const serviceCards = document.querySelectorAll(".service-card");
-    serviceCards.forEach((card) => servicesObserver.observe(card));
-
-    return () => servicesObserver.disconnect();
-  }, []);
 
   useEffect(() => {
     const valuesObserver = new IntersectionObserver(
@@ -178,59 +118,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Our Services</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive maritime solutions tailored to your needs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                data-index={index}
-                className={`service-card transition-all duration-700 ${
-                  visibleServices.includes(index)
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-12"
-                }`}
-              >
-                <Card className="group border-none shadow-md overflow-hidden h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                  <CardContent className="p-0">
-                    <div className="relative h-56 overflow-hidden">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/50 to-transparent" />
-                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-500" />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground">{service.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link to="/services">
-              <Button size="lg" variant="outline" className="hover:scale-105 transition-transform">
-                View All Services
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Services Overview - Circular Diagram */}
+      <ServicesCircle />
 
       {/* Why Choose Us */}
       <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5">

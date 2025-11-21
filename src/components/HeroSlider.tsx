@@ -40,7 +40,7 @@ const HeroSlider = () => {
   };
 
   return (
-    <div className="relative h-[600px] md:h-[700px] overflow-hidden">
+    <div className="relative h-screen overflow-hidden mt-20">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -52,37 +52,32 @@ const HeroSlider = () => {
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/90 via-primary/70 to-transparent" />
+            <div className="absolute inset-0 bg-black/30" />
           </div>
 
-          <div className="relative h-full container mx-auto px-4 flex items-center">
-            <div className="max-w-2xl text-white animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">
-                {slide.title}
+          <div className="relative h-full flex items-center justify-center px-4">
+            <div className="max-w-4xl text-center text-white animate-fade-in mx-auto px-8 md:px-20">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
+                {index === 0 ? "Navigating Excellence, Engineering Innovation" : slide.title}
               </h1>
-              <p className="text-2xl md:text-3xl mb-8 animate-fade-in opacity-90">
-                {slide.subtitle}
+              <p className="text-xl md:text-2xl lg:text-3xl mb-8 animate-fade-in opacity-90">
+                {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}
               </p>
               {index === 0 && (
-                <>
-                  <p className="text-xl mb-8 max-w-xl">
-                    Expert Maritime Solutions & Consultancy Services
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <Link to="/services">
-                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Explore Services
-                      </Button>
-                    </Link>
-                    <Link to="/contact">
-                      <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                        Contact Us
-                      </Button>
-                    </Link>
-                  </div>
-                </>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link to="/services">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                      Explore Services
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary bg-white/10 backdrop-blur-sm">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </div>
               )}
             </div>
           </div>
@@ -93,18 +88,18 @@ const HeroSlider = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-14 w-14 rounded-full z-10"
         onClick={prevSlide}
       >
-        <ChevronLeft className="h-8 w-8" />
+        <ChevronLeft className="h-10 w-10" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-14 w-14 rounded-full z-10"
         onClick={nextSlide}
       >
-        <ChevronRight className="h-8 w-8" />
+        <ChevronRight className="h-10 w-10" />
       </Button>
 
       {/* Dots Navigation */}

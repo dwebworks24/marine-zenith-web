@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Agile Marine Consultancy" className="h-14" />
+            <img src={logo} alt="Agile Marine Consultancy" className="h-16 md:h-20" style={{ width: 'auto', maxWidth: '180px' }} />
           </Link>
 
           {/* Desktop Navigation */}

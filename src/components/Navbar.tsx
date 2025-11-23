@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -25,7 +26,23 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Services", path: "/services" },
+    { 
+      name: "Services", 
+      path: "/services",
+      dropdown: [
+        { name: "Naval Architecture & Basic Design", path: "/services/naval-architecture" },
+        { name: "Project Management & Consultancy", path: "/services/project-management" },
+        { name: "Regulatory Compliance Documentation", path: "/services/regulatory-compliance" },
+        { name: "Ship Design & Optimization", path: "/services/ship-design-optimization" },
+        { name: "Modification & Repair Consultancy", path: "/services/modification-repair" },
+        { name: "Marine Surveying & Inspections", path: "/services/marine-surveying" },
+        { name: "Ballast Water Treatment & Retrofits", path: "/services/ballast-water-treatment" },
+        { name: "3D Twins of Ships & Rigs", path: "/services/3d-twins" },
+        { name: "Production Drawings Preparation", path: "/services/production-drawings" },
+        { name: "Green Technology & Sustainability", path: "/services/green-technology" },
+      ]
+    },
+    { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -47,17 +64,53 @@ const Navbar = () => {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1 space-x-8">
             {navItems.map((item) => (
-              <Link
+              <div 
                 key={item.path}
-                to={item.path}
-                className={`text-base font-medium transition-colors ${
-                  isActive(item.path)
-                    ? "text-primary font-semibold"
-                    : "text-foreground hover:text-primary"
-                } link-underline`}
+                className="relative"
+                onMouseEnter={() => item.dropdown && setOpenDropdown(item.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                {item.name}
-              </Link>
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className={`flex items-center gap-1 text-base font-medium transition-colors ${
+                        location.pathname.startsWith(item.path)
+                          ? "text-primary font-semibold"
+                          : "text-foreground hover:text-primary"
+                      } link-underline`}
+                    >
+                      {item.name}
+                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    {openDropdown === item.name && (
+                      <div className="absolute top-full left-0 mt-2 w-[280px] bg-white rounded-lg shadow-xl border z-50 overflow-hidden animate-fade-in">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.path}
+                            to={dropdownItem.path}
+                            className="block px-4 py-3 text-sm text-foreground hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white transition-all"
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className={`text-base font-medium transition-colors ${
+                      isActive(item.path)
+                        ? "text-primary font-semibold"
+                        : "text-foreground hover:text-primary"
+                    } link-underline`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
 
@@ -66,13 +119,9 @@ const Navbar = () => {
             <a 
               href="/brochure.pdf" 
               download
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold hover:scale-105 transition-transform shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:scale-105 transition-transform shadow-md"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
+              <Download className="h-5 w-5" />
               Download Brochure
             </a>
           </div>
@@ -92,22 +141,48 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
+          isOpen ? "max-h-[600px]" : "max-h-0"
         }`}
       >
-        <div className="bg-white border-t px-4 py-4 space-y-4">
+        <div className="bg-white border-t px-4 py-4 space-y-2">
           {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`block text-base font-medium py-2 transition-colors ${
-                isActive(item.path)
-                  ? "text-primary font-semibold"
-                  : "text-foreground hover:text-primary"
-              }`}
-            >
-              {item.name}
-            </Link>
+            <div key={item.path}>
+              {item.dropdown ? (
+                <div className="space-y-2">
+                  <button
+                    onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                    className="flex items-center justify-between w-full text-base font-medium py-2 text-foreground"
+                  >
+                    {item.name}
+                    <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openDropdown === item.name && (
+                    <div className="pl-4 space-y-2">
+                      {item.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.path}
+                          to={dropdownItem.path}
+                          className="block text-sm py-2 text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  to={item.path}
+                  className={`block text-base font-medium py-2 transition-colors ${
+                    isActive(item.path)
+                      ? "text-primary font-semibold"
+                      : "text-foreground hover:text-primary"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )}
+            </div>
           ))}
         </div>
       </div>

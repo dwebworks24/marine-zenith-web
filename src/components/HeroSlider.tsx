@@ -58,11 +58,11 @@ const HeroSlider = () => {
           </div>
 
           <div className="relative h-full flex items-center px-4 md:px-20 lg:px-32">
-            <div className="max-w-4xl text-white animate-fade-in" style={{ paddingLeft: '10%' }}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in text-left">
+            <div className="max-w-3xl text-white animate-fade-in pl-4 md:pl-[120px]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-fade-in text-left">
                 {index === 0 ? "Navigating Excellence, Engineering Innovation" : slide.title}
               </h1>
-              <p className="text-xl md:text-2xl mb-8 animate-fade-in opacity-90 text-left">
+              <p className="text-lg md:text-xl mb-8 animate-fade-in opacity-90 text-left">
                 {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}
               </p>
               {index === 0 && (

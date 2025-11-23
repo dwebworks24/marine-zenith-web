@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Service {
   name: string;
@@ -142,30 +143,53 @@ const ServicesCircle = () => {
                   isServiceVisible
                     ? "opacity-100 scale-100 rotate-0"
                     : "opacity-0 scale-0 rotate-[10deg]"
-                } ${hoveredService === index ? "z-20 scale-110" : "z-10"}`}
+                } ${hoveredService === index ? "z-20" : "z-10"}`}
                 style={{
                   top: `${pos.y}%`,
                   left: `${pos.x}%`,
                   transform: 'translate(-50%, -50%)',
                   transitionDelay: isServiceVisible ? '0ms' : '0ms',
                   transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  perspective: '1000px',
                 }}
                 onMouseEnter={() => setHoveredService(index)}
                 onMouseLeave={() => setHoveredService(null)}
               >
                 <div
-                  className={`w-28 h-28 md:w-36 md:h-36 rounded-full ${service.color} flex items-center justify-center shadow-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:brightness-110`}
+                  className={`relative w-28 h-28 md:w-36 md:h-36 cursor-pointer transition-transform duration-600`}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    transform: hoveredService === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                  }}
                 >
-                  <p className="text-white font-semibold text-xs md:text-sm text-center px-3 leading-tight">
-                    {service.name}
-                  </p>
-                </div>
-                
-                {hoveredService === index && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 bg-white px-4 py-2 rounded-lg shadow-lg whitespace-nowrap z-30 animate-fade-in">
-                    <p className="text-sm font-medium text-foreground">{service.name}</p>
+                  {/* Front Side */}
+                  <div
+                    className={`absolute inset-0 rounded-full ${service.color} flex items-center justify-center shadow-xl backface-hidden`}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <p className="text-white font-semibold text-xs md:text-sm text-center px-3 leading-tight">
+                      {service.name}
+                    </p>
                   </div>
-                )}
+                  
+                  {/* Back Side */}
+                  <div
+                    className={`absolute inset-0 rounded-full ${service.color} flex items-center justify-center shadow-xl backface-hidden`}
+                    style={{
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                    }}
+                  >
+                    <Link to={`/services/${service.name.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}>
+                      <button className="bg-white text-primary px-4 py-2 rounded-lg font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                        Know More
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             );
           })}

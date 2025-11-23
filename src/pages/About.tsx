@@ -31,6 +31,9 @@ import {
 } from "lucide-react";
 import teamPhoto from "@/assets/team-photo.jpg";
 import StakeholdersHexagon from "@/components/StakeholdersHexagon";
+import SubBanner from "@/components/SubBanner";
+import TeamSection from "@/components/TeamSection";
+import aboutBanner from "@/assets/hero-3.jpg";
 
 const values = [
   {
@@ -110,19 +113,16 @@ const software = [
 const About = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="relative h-[400px] bg-gradient-to-br from-primary to-secondary text-white flex items-center">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 wave-animation" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <nav className="text-sm mb-4 opacity-90">
-            <Link to="/" className="hover:underline">Home</Link> &gt; About Us
-          </nav>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in">About Agile Marine Consultancy</h1>
-          <p className="text-xl md:text-2xl opacity-90 animate-fade-in">Your Trusted Partner in Maritime Excellence</p>
-        </div>
-      </section>
+      {/* Sub-banner */}
+      <SubBanner
+        title="About Agile Marine Consultancy"
+        subtitle="Your Trusted Partner in Maritime Excellence"
+        breadcrumbs={[
+          { label: "Home", path: "/" },
+          { label: "About Us", path: "/about" },
+        ]}
+        backgroundImage={aboutBanner}
+      />
 
       {/* Company Introduction */}
       <section className="py-20 bg-background">
@@ -187,7 +187,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do
+              The Principles That Guide Us
             </p>
           </div>
 
@@ -198,8 +198,8 @@ const About = () => {
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <value.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="font-semibold mb-3">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                  <h3 className="font-semibold mb-2">{value.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{value.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -207,29 +207,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Structure */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Meet Our Expert Team</h2>
-            <p className="text-lg text-muted-foreground">14 seasoned professionals committed to your success</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
-            {team.map((member, index) => (
-              <Card key={index} className="card-hover border-none shadow-md text-center">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <member.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-2 text-sm">{member.role}</h4>
-                  <div className="text-2xl font-bold text-primary">{member.count}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Team Section with Photos */}
+      <TeamSection />
 
       {/* Certifications */}
       <section className="py-20 bg-background">

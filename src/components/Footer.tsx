@@ -21,7 +21,7 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* About Column */}
           <div>
             <img src={logo} alt="Agile Marine Consultancy" className="h-16 mb-4 brightness-0 invert" />
@@ -50,8 +50,70 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/projects" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
                   Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/services/naval-architecture" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Naval Architecture
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/project-management" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Project Management
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/regulatory-compliance" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Regulatory Compliance
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/ship-design-optimization" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Ship Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/marine-surveying" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Marine Surveying
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/ballast-water-treatment" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Ballast Water Treatment
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/3d-twins" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  3D Twins
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/production-drawings" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Production Drawings
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/green-technology" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Green Technology
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/modification-repair" className="text-sm opacity-90 hover:opacity-100 hover:text-primary transition-colors">
+                  Modification & Repairs
                 </Link>
               </li>
             </ul>

@@ -57,12 +57,12 @@ const HeroSlider = () => {
             <div className="absolute inset-0 bg-black/30" />
           </div>
 
-          <div className="relative h-full flex items-center px-4 md:px-20 lg:px-32">
-            <div className="max-w-3xl text-white animate-fade-in pl-4 md:pl-[120px]">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-fade-in text-left">
+          <div className="relative h-full flex items-center px-4">
+            <div className="max-w-3xl text-white animate-fade-in pl-[80px] md:pl-[150px]">
+              <h1 className="text-3xl md:text-[52px] lg:text-[52px] font-bold mb-4 animate-fade-in text-left leading-tight">
                 {index === 0 ? "Navigating Excellence, Engineering Innovation" : slide.title}
               </h1>
-              <p className="text-lg md:text-xl mb-8 animate-fade-in opacity-90 text-left">
+              <p className="text-base md:text-xl lg:text-xl mb-8 animate-fade-in opacity-90 text-left">
                 {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}
               </p>
               {index === 0 && (
@@ -88,18 +88,20 @@ const HeroSlider = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-14 w-14 rounded-full z-10"
+        className="absolute left-[20px] md:left-[60px] top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-12 w-12 md:h-14 md:w-14 rounded-full z-10"
         onClick={prevSlide}
+        aria-label="Previous slide"
       >
-        <ChevronLeft className="h-10 w-10" />
+        <ChevronLeft className="h-8 w-8 md:h-10 md:w-10" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-14 w-14 rounded-full z-10"
+        className="absolute right-[20px] md:right-[60px] top-1/2 -translate-y-1/2 text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm h-12 w-12 md:h-14 md:w-14 rounded-full z-10"
         onClick={nextSlide}
+        aria-label="Next slide"
       >
-        <ChevronRight className="h-10 w-10" />
+        <ChevronRight className="h-8 w-8 md:h-10 md:w-10" />
       </Button>
 
       {/* Dots Navigation */}

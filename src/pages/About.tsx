@@ -33,7 +33,7 @@ import teamPhoto from "@/assets/team-photo.jpg";
 import StakeholdersHexagon from "@/components/StakeholdersHexagon";
 import SubBanner from "@/components/SubBanner";
 import TeamSection from "@/components/TeamSection";
-import aboutBanner from "@/assets/hero-3.jpg";
+import aboutBanner from "@/assets/about-banner.jpg";
 
 const values = [
   {

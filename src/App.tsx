@@ -7,6 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Preloader from "@/components/Preloader";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -71,7 +73,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <Preloader />
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <AnimatedRoutes />
         <WhatsAppButton />

@@ -60,7 +60,13 @@ const HeroSlider = () => {
           <div className="relative h-full flex items-center px-4">
             <div className="max-w-3xl text-white animate-fade-in pl-[80px] md:pl-[150px]">
               <h1 className="text-3xl md:text-[52px] lg:text-[52px] font-bold mb-4 animate-fade-in text-left leading-tight">
-                {index === 0 ? "Navigating Excellence, Engineering Innovation" : slide.title}
+                {index === 0 ? (
+                  <>
+                    <span className="whitespace-nowrap">Navigating Excellence,</span>
+                    <br />
+                    <span className="whitespace-nowrap">Engineering Innovation</span>
+                  </>
+                ) : slide.title}
               </h1>
               <p className="text-base md:text-xl lg:text-xl mb-8 animate-fade-in opacity-90 text-left">
                 {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}

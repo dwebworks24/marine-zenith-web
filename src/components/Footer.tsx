@@ -4,7 +4,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#001F3F] text-white pt-16 pb-8">
+    <footer className="relative bg-[#001F3F] text-white pt-16 pb-8 w-full max-w-[100vw] overflow-x-hidden">
       {/* Wave decoration */}
       <div className="absolute top-0 left-0 right-0 h-16 -translate-y-full">
         <svg
@@ -20,12 +20,12 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
+      <div className="container mx-auto px-4 max-w-7xl overflow-x-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-12">
           {/* Column 1 - Logo & About */}
-          <div>
+          <div className="min-w-0">
             <div className="bg-white p-4 rounded-lg shadow-lg inline-block mb-5">
-              <img src={logo} alt="Agile Marine Consultancy" className="h-14 w-auto" />
+              <img src={logo} alt="Agile Marine Consultancy" className="h-12 w-auto" />
             </div>
             <p className="text-sm text-gray-300 leading-relaxed mb-4">
               Expert Maritime Solutions & Consultancy Services. Navigating Excellence, Engineering Innovation.
@@ -36,7 +36,7 @@ const Footer = () => {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div>
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Quick Links</h3>
             <ul className="space-y-3">
               <li>
@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
 
           {/* Column 3 - Services Part 1 */}
-          <div>
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Our Services</h3>
             <ul className="space-y-3">
               <li>
@@ -100,7 +100,7 @@ const Footer = () => {
           </div>
 
           {/* Column 4 - Services Part 2 */}
-          <div>
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">More Services</h3>
             <ul className="space-y-3">
               <li>
@@ -132,7 +132,7 @@ const Footer = () => {
           </div>
 
           {/* Column 5 - Contact Info */}
-          <div>
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Contact Info</h3>
             
             {/* Phone Numbers */}
@@ -162,7 +162,7 @@ const Footer = () => {
                 <div>
                   <a
                     href="mailto:operations@agilemarineconsultancy.ae"
-                    className="text-sm text-gray-300 hover:text-white hover:underline transition-all block break-words"
+                    className="text-xs text-gray-300 hover:text-white hover:underline transition-all block break-all"
                   >
                     operations@agilemarineconsultancy.ae
                   </a>
@@ -171,7 +171,7 @@ const Footer = () => {
                 <div>
                   <a
                     href="mailto:projects@agilemarineconsultancy.ae"
-                    className="text-sm text-gray-300 hover:text-white hover:underline transition-all block break-words"
+                    className="text-xs text-gray-300 hover:text-white hover:underline transition-all block break-all"
                   >
                     projects@agilemarineconsultancy.ae
                   </a>
@@ -180,7 +180,7 @@ const Footer = () => {
                 <div>
                   <a
                     href="mailto:accounts@agilemarineconsultancy.ae"
-                    className="text-sm text-gray-300 hover:text-white hover:underline transition-all block break-words"
+                    className="text-xs text-gray-300 hover:text-white hover:underline transition-all block break-all"
                   >
                     accounts@agilemarineconsultancy.ae
                   </a>

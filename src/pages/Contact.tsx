@@ -20,6 +20,8 @@ import {
 import { useState } from "react";
 import { Phone, Mail, Clock, MapPin, User, Building, Ship, MessageSquare, Linkedin, Facebook, Twitter, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import SubBanner from "@/components/SubBanner";
+import contactBanner from "@/assets/services-banner.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -60,24 +62,21 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">
       {/* Hero Banner */}
-      <section className="relative h-[400px] bg-gradient-to-br from-primary to-secondary text-white flex items-center">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 wave-animation" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <nav className="text-sm mb-4 opacity-90">
-            <Link to="/" className="hover:underline">Home</Link> &gt; Contact
-          </nav>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-xl md:text-2xl opacity-90">Let's Navigate Your Maritime Challenges Together</p>
-        </div>
-      </section>
+      <SubBanner
+        title="Get In Touch"
+        subtitle="Let's Navigate Your Maritime Challenges Together"
+        breadcrumbs={[
+          { label: "Home", path: "/" },
+          { label: "Contact", path: "/contact" },
+        ]}
+        backgroundImage={contactBanner}
+      />
 
       {/* Two-Column Layout */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background w-full overflow-x-hidden">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <div>
@@ -301,8 +300,8 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-muted w-full overflow-x-hidden">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
             <Accordion type="single" collapsible className="space-y-4">
@@ -368,8 +367,8 @@ const Contact = () => {
       </section>
 
       {/* Social Media */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background w-full overflow-x-hidden">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Connect With Us</h2>
             <div className="flex justify-center gap-6">

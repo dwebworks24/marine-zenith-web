@@ -108,6 +108,22 @@ All colors MUST be HSL.
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
   }
+  
+  /* Global paragraph justification */
+  p:not(.whitespace-nowrap),
+  .description,
+  .content-text,
+  .body-text {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  @media (max-width: 767px) {
+    p:not(.whitespace-nowrap) {
+      text-align: left;
+    }
+  }
 }
 
 @layer components {
@@ -251,17 +267,14 @@ All colors MUST be HSL.
   @keyframes bounce-in {
     0% {
       opacity: 0;
-      transform: scale(0.3);
+      transform: scale(0.8) translateY(20px);
     }
     50% {
-      opacity: 1;
       transform: scale(1.05);
     }
-    70% {
-      transform: scale(0.9);
-    }
     100% {
-      transform: scale(1);
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
   }
   
@@ -271,6 +284,15 @@ All colors MUST be HSL.
     }
     50% {
       background-position: 100% 50%;
+    }
+  }
+  
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 }

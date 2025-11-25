@@ -56,7 +56,7 @@ const StakeholdersHexagon = () => {
 
   const getHexagonPosition = (position: number) => {
     const angle = (position * 60 - 90) * (Math.PI / 180); // 60° apart, starting from top
-    const radius = 45; // percentage
+    const radius = 40; // Reduced from 45 to 40 (10% reduction for tighter gaps)
     const x = 50 + radius * Math.cos(angle);
     const y = 50 + radius * Math.sin(angle);
     return { x, y };
@@ -110,16 +110,16 @@ const StakeholdersHexagon = () => {
                 className={`absolute transition-all duration-300 ${
                   connectorsVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 }`}
-                style={{
-                  top: `${(centerY + pos.y) / 2}%`,
-                  left: `${(centerX + pos.x) / 2}%`,
-                  width: '30px',
-                  height: '30px',
-                  background: '#FFE4E1',
-                  clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-                  transform: 'translate(-50%, -50%)',
-                  transitionDelay: '0ms',
-                }}
+                  style={{
+                    top: `${(centerY + pos.y) / 2}%`,
+                    left: `${(centerX + pos.x) / 2}%`,
+                    width: '20px',
+                    height: '20px',
+                    background: '#FFE4E1',
+                    clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+                    transform: 'translate(-50%, -50%)',
+                    transitionDelay: '0ms',
+                  }}
               />
             );
           })}

@@ -21,18 +21,62 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl overflow-x-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-12">
-          {/* Column 1 - Logo & About */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
+          {/* Column 1 - Logo, About & Social Media */}
           <div className="min-w-0">
             <div className="bg-white p-4 rounded-lg shadow-lg inline-block mb-5">
-              <img src={logo} alt="Agile Marine Consultancy" className="h-12 w-auto" />
+              <img src={logo} alt="Agile Marine Consultancy" className="w-40 h-auto" />
             </div>
             <p className="text-sm text-gray-300 leading-relaxed mb-4">
               Expert Maritime Solutions & Consultancy Services. Navigating Excellence, Engineering Innovation.
             </p>
-            <p className="text-base font-semibold bg-gradient-to-r from-[#1572B9] to-[#6BB700] bg-clip-text text-transparent">
+            <p className="text-base font-semibold bg-gradient-to-r from-[#1572B9] to-[#6BB700] bg-clip-text text-transparent mb-6">
               Your Trusted Maritime Partner
             </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-5">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           {/* Column 2 - Quick Links */}
@@ -67,7 +111,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3 - Services Part 1 */}
+          {/* Column 3 - All Services (Combined) */}
           <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Our Services</h3>
             <ul className="space-y-3">
@@ -96,13 +140,6 @@ const Footer = () => {
                   Modification & Repairs
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Column 4 - Services Part 2 */}
-          <div className="min-w-0">
-            <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">More Services</h3>
-            <ul className="space-y-3">
               <li>
                 <Link to="/services/marine-surveying" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
                   Marine Surveying
@@ -131,34 +168,30 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 5 - Contact Info */}
+          {/* Column 4 - Contact Info */}
           <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Contact Info</h3>
             
-            {/* Phone Numbers */}
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-3">
-                <Phone className="h-5 w-5 text-[#1572B9]" />
-              </div>
-              <div className="space-y-2 ml-7">
-                <a href="tel:+971528707320" className="text-sm text-gray-300 hover:text-white hover:underline transition-all block">
+            {/* Phone Numbers - Icon beside content */}
+            <div className="flex items-start gap-4 mb-6">
+              <Phone className="h-5 w-5 text-[#1572B9] flex-shrink-0 mt-1" />
+              <div className="flex flex-col gap-2">
+                <a href="tel:+971528707320" className="text-sm text-gray-300 hover:text-white hover:underline transition-all">
                   +971 52 870 7320
                 </a>
-                <a href="tel:+971581178856" className="text-sm text-gray-300 hover:text-white hover:underline transition-all block">
+                <a href="tel:+971581178856" className="text-sm text-gray-300 hover:text-white hover:underline transition-all">
                   +971 58 117 8856
                 </a>
-                <a href="tel:+971581178869" className="text-sm text-gray-300 hover:text-white hover:underline transition-all block">
+                <a href="tel:+971581178869" className="text-sm text-gray-300 hover:text-white hover:underline transition-all">
                   +971 58 117 8869
                 </a>
               </div>
             </div>
             
-            {/* Email Addresses */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Mail className="h-5 w-5 text-[#1572B9]" />
-              </div>
-              <div className="space-y-2 ml-7">
+            {/* Email Addresses - Icon beside content */}
+            <div className="flex items-start gap-4">
+              <Mail className="h-5 w-5 text-[#1572B9] flex-shrink-0 mt-1" />
+              <div className="flex flex-col gap-2">
                 <div>
                   <a
                     href="mailto:operations@agilemarineconsultancy.ae"
@@ -191,52 +224,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Media Icons */}
-        <div className="border-t border-white/10 pt-10 mt-10">
-          <div className="flex items-center justify-center gap-5 mb-8">
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
-            >
-              <Facebook className="h-5 w-5" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
-            >
-              <Twitter className="h-5 w-5" />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
-            >
-              <Youtube className="h-5 w-5" />
-            </a>
-          </div>
-          
-          {/* Copyright */}
+        {/* Copyright */}
+        <div className="border-t border-white/10 pt-8 mt-10">
           <div className="text-center">
             <p className="text-sm text-gray-500">
               © 2025 Agile Marine Consultancy. All rights reserved.

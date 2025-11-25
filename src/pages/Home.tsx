@@ -104,7 +104,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6 animate-fade-in">Welcome to Agile Marine Consultancy</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 animate-fade-in">
+            <p className="text-base text-muted-foreground leading-relaxed mb-8 animate-fade-in text-justify">
               We specialize in delivering innovative solutions and expert consultancy services tailored to the maritime
               industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to
               helping our clients navigate challenges and optimize their operations efficiently.
@@ -131,7 +131,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
@@ -141,23 +141,21 @@ const Home = () => {
                     ? "opacity-100 translate-y-0 scale-100"
                     : "opacity-0 translate-y-12 scale-95"
                 }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <Card className="group border-none shadow-md overflow-hidden h-full hover:shadow-2xl transition-all duration-500">
-                  <CardContent className="p-0">
-                    <div className="relative h-64 overflow-hidden">
+                <Card className="group border-none shadow-md overflow-hidden h-full hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                  <CardContent className="p-0 flex flex-col h-full">
+                    <div className="relative h-52 overflow-hidden">
                       <img
                         src={value.image}
                         alt={value.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 rounded-t-xl"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/60 to-transparent" />
-                      <div className="absolute inset-0 flex items-end p-6">
-                        <div className="text-white">
-                          <h3 className="text-2xl font-bold mb-2">{value.title}</h3>
-                          <p className="text-sm opacity-90">{value.description}</p>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col bg-white">
+                      <h3 className="text-2xl font-bold mb-3 gradient-text">{value.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed text-justify flex-1">{value.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -176,10 +174,11 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mx-auto mb-6 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl`}>
-                  <stat.icon className="h-12 w-12 text-white" />
+                <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mx-auto mb-6 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl relative overflow-hidden`}>
+                  <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                  <stat.icon className="h-12 w-12 text-white relative z-10 animate-float" style={{ animationDelay: `${index * 200}ms` }} />
                 </div>
-                <div className="text-6xl font-bold mb-3 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                <div className="text-6xl font-bold mb-3 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent animate-bounce-in" style={{ animationDelay: `${index * 100}ms` }}>
                   {counts[index]}
                   {stat.suffix}
                 </div>

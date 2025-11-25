@@ -79,7 +79,7 @@ const ServicesCircle = () => {
         </div>
 
         <div className="relative w-full max-w-5xl mx-auto" style={{ aspectRatio: '1' }}>
-          {/* Center Ellipse */}
+          {/* Center Ellipse - Reduced Size */}
           <div
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-600 ease-out ${
               centerVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
@@ -88,10 +88,10 @@ const ServicesCircle = () => {
             <div className="relative">
               <div 
                 className="rounded-full bg-gradient-to-br from-ocean-blue to-primary flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-all duration-300"
-                style={{ width: '250px', height: '180px' }}
+                style={{ width: '200px', height: '140px' }}
               >
-                <div className="text-center px-6">
-                  <p className="text-white font-bold text-sm md:text-base leading-tight">
+                <div className="text-center px-4">
+                  <p className="text-white font-bold text-sm leading-tight">
                     AGILE MARINE
                     <br />
                     CONSULTANCY
@@ -101,33 +101,57 @@ const ServicesCircle = () => {
             </div>
           </div>
 
-          {/* Connection Lines */}
+          {/* Connection Lines - Stop at Center Border */}
           {linesVisible && services.map((service, index) => {
             const isServiceVisible = visibleServices.includes(index);
             const pos = getCirclePosition(service.angle, radius);
             const centerX = 50;
             const centerY = 50;
-            const angle = Math.atan2(pos.y - centerY, pos.x - centerX);
-            const length = Math.sqrt(
-              Math.pow(pos.x - centerX, 2) + 
-              Math.pow(pos.y - centerY, 2)
+            const centerRadius = 6; // Percentage radius of center circle (100px out of ~1600px = ~6%)
+            const serviceCircleRadius = 7; // Percentage radius of service circles
+            
+            // Calculate angle from center to service
+            const angleRad = Math.atan2(pos.y - centerY, pos.x - centerX);
+            
+            // Line starts at center border (not center point)
+            const lineStartX = centerX + centerRadius * Math.cos(angleRad);
+            const lineStartY = centerY + centerRadius * Math.sin(angleRad);
+            
+            // Line ends at service circle edge
+            const distance = Math.sqrt(Math.pow(pos.x - centerX, 2) + Math.pow(pos.y - centerY, 2));
+            const lineEndX = centerX + (distance - serviceCircleRadius) * Math.cos(angleRad);
+            const lineEndY = centerY + (distance - serviceCircleRadius) * Math.sin(angleRad);
+            
+            const lineLength = Math.sqrt(
+              Math.pow(lineEndX - lineStartX, 2) + 
+              Math.pow(lineEndY - lineStartY, 2)
             );
 
             return (
-              <div
+              <svg
                 key={`line-${index}`}
-                className={`absolute top-1/2 left-1/2 origin-left transition-all duration-400 ${
-                  isServiceVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-                } ${hoveredService === index ? "opacity-100 shadow-glow" : "opacity-40"}`}
+                className={`absolute transition-all duration-400 ${
+                  isServiceVisible ? "opacity-100" : "opacity-0"
+                } ${hoveredService === index ? "opacity-100" : "opacity-40"}`}
                 style={{
-                  width: `${length}%`,
+                  left: `${lineStartX}%`,
+                  top: `${lineStartY}%`,
+                  width: `${lineLength}%`,
                   height: '2px',
-                  background: 'linear-gradient(90deg, #FF6B35 0%, #FF6B35 100%)',
-                  transform: `rotate(${angle}rad)`,
+                  transform: `rotate(${angleRad}rad)`,
                   transformOrigin: 'left center',
-                  transition: 'all 400ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  overflow: 'visible',
                 }}
-              />
+              >
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="100%"
+                  y2="0"
+                  stroke="#FF6B35"
+                  strokeWidth="2"
+                />
+              </svg>
             );
           })}
 
@@ -156,10 +180,11 @@ const ServicesCircle = () => {
                 onMouseLeave={() => setHoveredService(null)}
               >
                 <div
-                  className={`relative w-28 h-28 md:w-36 md:h-36 cursor-pointer transition-transform duration-600`}
+                  className={`relative w-28 h-28 md:w-36 md:h-36 cursor-pointer`}
                   style={{
                     transformStyle: 'preserve-3d',
                     transform: hoveredService === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                    transition: 'transform 900ms cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   {/* Front Side */}

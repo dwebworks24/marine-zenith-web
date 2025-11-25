@@ -124,22 +124,22 @@ const About = () => {
         backgroundImage={aboutBanner}
       />
 
-      {/* Company Introduction */}
+      {/* Company Introduction - Image on Left, Text on Right */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="animate-fade-in">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-6xl mx-auto">
+            <div className="lg:col-span-2 animate-fade-in">
               <img
                 src={teamPhoto}
                 alt="Agile Marine Team"
-                className="rounded-2xl shadow-2xl w-full h-auto hover:scale-105 transition-transform duration-500"
+                className="rounded-2xl shadow-2xl w-full h-[500px] object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="animate-fade-in">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <div className="lg:col-span-3 animate-fade-in">
+              <p className="text-base text-muted-foreground leading-relaxed mb-6 text-justify">
                 At Agile Marine Consultancy, we specialize in delivering innovative solutions and expert consultancy services tailored to the maritime industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to helping our clients navigate challenges and optimize their operations efficiently.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed text-justify">
                 Our team comprises seasoned professionals with extensive experience across various facets of marine operations, including project management, technical consultancy, regulatory compliance, safety and risk management, and environmental sustainability. Whether you are a shipping company, port authority, or maritime service provider, we are dedicated to supporting your business goals and navigating challenges together with you.
               </p>
             </div>
@@ -157,7 +157,7 @@ const About = () => {
                   <Target className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-justify">
                   "Empowering maritime industries through innovative solutions and expert guidance. At Agile Marine Consultancy, our mission is to navigate the complexities of the marine world with adaptability and insight, fostering sustainable practices, enhancing safety, and driving efficiency for our clients worldwide."
                 </p>
               </CardContent>
@@ -169,7 +169,7 @@ const About = () => {
                   <Eye className="h-8 w-8 text-secondary" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-justify">
                   "To be the leading force in shaping the future of marine industries worldwide by pioneering innovative solutions, fostering sustainable practices, and setting new standards of excellence. Through our relentless commitment to agility, expertise, and integrity, we envision a world where maritime enterprises thrive, ecosystems flourish, and the seas remain a vital resource for generations to come."
                 </p>
               </CardContent>
@@ -199,7 +199,7 @@ const About = () => {
                     <value.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="font-semibold mb-2">{value.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{value.description}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 text-justify">{value.description}</p>
                 </CardContent>
               </Card>
             ))}

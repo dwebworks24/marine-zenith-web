@@ -56,9 +56,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo with white background */}
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Agile Marine Consultancy" className="h-16 md:h-20" style={{ width: 'auto', maxWidth: '180px' }} />
+            <div className="bg-white px-4 py-2 rounded-lg shadow-md">
+              <img src={logo} alt="Agile Marine Consultancy" className="h-14 md:h-16" style={{ width: 'auto', maxWidth: '180px' }} />
+            </div>
           </Link>
 
           {/* Desktop Navigation - Centered */}
@@ -67,12 +69,11 @@ const Navbar = () => {
               <div 
                 key={item.path}
                 className="relative"
-                onMouseEnter={() => item.dropdown && setOpenDropdown(item.name)}
-                onMouseLeave={() => setOpenDropdown(null)}
               >
                 {item.dropdown ? (
                   <>
                     <button
+                      onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
                       className={`flex items-center gap-1 text-base font-medium transition-colors ${
                         location.pathname.startsWith(item.path)
                           ? "text-primary font-semibold"
@@ -80,16 +81,26 @@ const Navbar = () => {
                       } link-underline`}
                     >
                       {item.name}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                     </button>
                     
                     {/* Dropdown Menu */}
                     {openDropdown === item.name && (
-                      <div className="absolute top-full left-0 mt-2 w-[280px] bg-white rounded-lg shadow-xl border z-50 overflow-hidden animate-fade-in">
+                      <div 
+                        className="absolute top-full left-0 mt-0 w-[280px] bg-white rounded-lg shadow-xl border z-[1000] overflow-hidden animate-fade-in"
+                        onMouseLeave={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          const mouseY = e.clientY;
+                          if (mouseY < rect.top - 20 || mouseY > rect.bottom + 20) {
+                            setTimeout(() => setOpenDropdown(null), 100);
+                          }
+                        }}
+                      >
                         {item.dropdown.map((dropdownItem) => (
                           <Link
                             key={dropdownItem.path}
                             to={dropdownItem.path}
+                            onClick={() => setOpenDropdown(null)}
                             className="block px-4 py-3 text-sm text-foreground hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white transition-all"
                           >
                             {dropdownItem.name}

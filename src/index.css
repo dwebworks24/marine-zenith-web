@@ -113,10 +113,26 @@ All colors MUST be HSL.
   p:not(.whitespace-nowrap),
   .description,
   .content-text,
-  .body-text {
+  .body-text,
+  article {
     text-align: justify;
     text-justify: inter-word;
     hyphens: auto;
+  }
+
+  /* EXCLUDE headings from justify */
+  h1, h2, h3, h4, h5, h6,
+  .heading,
+  .title {
+    text-align: left;
+  }
+
+  /* EXCLUDE service circles from justify - keep centered */
+  .service-circle h3,
+  .service-circle p,
+  .service-circle span,
+  .service-circle button {
+    text-align: center !important;
   }
 
   @media (max-width: 767px) {

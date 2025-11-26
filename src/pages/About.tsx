@@ -127,15 +127,15 @@ const About = () => {
       {/* Company Introduction - Image on Left, Text on Right */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-6xl mx-auto">
-            <div className="lg:col-span-2 animate-fade-in">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="animate-fade-in">
               <img
                 src={teamPhoto}
                 alt="Agile Marine Team"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="lg:col-span-3 animate-fade-in">
+            <div className="animate-fade-in">
               <p className="text-base text-muted-foreground leading-relaxed mb-6 text-justify">
                 At Agile Marine Consultancy, we specialize in delivering innovative solutions and expert consultancy services tailored to the maritime industry. With a deep commitment to excellence and a passion for maritime engineering, we are dedicated to helping our clients navigate challenges and optimize their operations efficiently.
               </p>

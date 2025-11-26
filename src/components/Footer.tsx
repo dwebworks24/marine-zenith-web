@@ -21,17 +21,14 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl overflow-x-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
           {/* Column 1 - Logo, About & Social Media */}
           <div className="min-w-0">
             <div className="bg-white p-4 rounded-lg shadow-lg inline-block mb-5">
               <img src={logo} alt="Agile Marine Consultancy" className="w-40 h-auto" />
             </div>
-            <p className="text-sm text-gray-300 leading-relaxed mb-4">
+            <p className="text-sm text-gray-300 leading-relaxed mb-6">
               Expert Maritime Solutions & Consultancy Services. Navigating Excellence, Engineering Innovation.
-            </p>
-            <p className="text-base font-semibold bg-gradient-to-r from-[#1572B9] to-[#6BB700] bg-clip-text text-transparent mb-6">
-              Your Trusted Maritime Partner
             </p>
             
             {/* Social Media Icons */}
@@ -40,41 +37,41 @@ const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+                className="text-gray-300 hover:text-[#1572B9] hover:scale-125 hover:-translate-y-1 transition-all duration-300 inline-flex"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-6 w-6" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+                className="text-gray-300 hover:text-[#1572B9] hover:scale-125 hover:-translate-y-1 transition-all duration-300 inline-flex"
               >
-                <Facebook className="h-5 w-5" />
+                <Facebook className="h-6 w-6" />
               </a>
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+                className="text-gray-300 hover:text-[#1572B9] hover:scale-125 hover:-translate-y-1 transition-all duration-300 inline-flex"
               >
-                <Twitter className="h-5 w-5" />
+                <Twitter className="h-6 w-6" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+                className="text-gray-300 hover:text-[#1572B9] hover:scale-125 hover:-translate-y-1 transition-all duration-300 inline-flex"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-6 w-6" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-[#1572B9] hover:to-[#6BB700] hover:border-transparent hover:text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-[#1572B9]/30"
+                className="text-gray-300 hover:text-[#1572B9] hover:scale-125 hover:-translate-y-1 transition-all duration-300 inline-flex"
               >
-                <Youtube className="h-5 w-5" />
+                <Youtube className="h-6 w-6" />
               </a>
             </div>
           </div>
@@ -111,61 +108,65 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3 - All Services (Combined) */}
+          {/* Column 3 - All Services in 2 Columns */}
           <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Our Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/services/naval-architecture" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Naval Architecture
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/project-management" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Project Management
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/regulatory-compliance" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Regulatory Compliance
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/ship-design-optimization" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Ship Design & Optimization
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/modification-repair" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Modification & Repairs
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/marine-surveying" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Marine Surveying
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/ballast-water-treatment" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Ballast Water Treatment
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/3d-twins" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  3D Digital Twins
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/production-drawings" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Production Drawings
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/green-technology" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
-                  Green Technology
-                </Link>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/services/naval-architecture" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Naval Architecture
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/project-management" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Project Management
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/regulatory-compliance" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Regulatory Compliance
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/ship-design-optimization" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Ship Design & Optimization
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/modification-repair" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Modification & Repairs
+                  </Link>
+                </li>
+              </ul>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/services/marine-surveying" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Marine Surveying
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/ballast-water-treatment" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Ballast Water Treatment
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/3d-twins" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    3D Digital Twins
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/production-drawings" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Production Drawings
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/green-technology" className="text-sm text-gray-300 hover:text-[#6BB700] hover:pl-1 transition-all duration-300 inline-block">
+                    Green Technology
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Column 4 - Contact Info */}

@@ -107,15 +107,16 @@ const ServicesCircle = () => {
             const pos = getCirclePosition(service.angle, radius);
             const centerX = 50;
             const centerY = 50;
-            const centerRadius = 6; // Percentage radius of center circle (100px out of ~1600px = ~6%)
+            const centerRadiusX = 6.25; // 100px / 1600px = 6.25% for 200px width ellipse
+            const centerRadiusY = 4.375; // 70px / 1600px = 4.375% for 140px height ellipse
             const serviceCircleRadius = 7; // Percentage radius of service circles
             
             // Calculate angle from center to service
             const angleRad = Math.atan2(pos.y - centerY, pos.x - centerX);
             
-            // Line starts at center border (not center point)
-            const lineStartX = centerX + centerRadius * Math.cos(angleRad);
-            const lineStartY = centerY + centerRadius * Math.sin(angleRad);
+            // Line starts at center ellipse border
+            const lineStartX = centerX + centerRadiusX * Math.cos(angleRad);
+            const lineStartY = centerY + centerRadiusY * Math.sin(angleRad);
             
             // Line ends at service circle edge
             const distance = Math.sqrt(Math.pow(pos.x - centerX, 2) + Math.pow(pos.y - centerY, 2));

@@ -20,6 +20,21 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.nav-item-dropdown')) {
+        setOpenDropdown(null);
+      }
+    };
+    
+    if (openDropdown) {
+      document.addEventListener('click', handleClickOutside);
+    }
+    
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [openDropdown]);
+
+  useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
@@ -68,7 +83,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <div 
                 key={item.path}
-                className="relative"
+                className="relative nav-item-dropdown"
               >
                 {item.dropdown ? (
                   <>

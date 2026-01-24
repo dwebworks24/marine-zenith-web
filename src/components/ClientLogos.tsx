@@ -1,24 +1,64 @@
-import { Ship, Anchor, Waves, Sailboat, Compass, Navigation, Star, Container, Activity, Radio } from "lucide-react";
+import liwaMarine from "@/assets/clients/liwa-marine.jpg";
+import ahMarine from "@/assets/clients/ah-marine.jpg";
+import seaSafari from "@/assets/clients/sea-safari.jpg";
+import blueIris from "@/assets/clients/blue-iris.jpg";
+import questMarine from "@/assets/clients/quest-marine.png";
+import trioMarine from "@/assets/clients/trio-marine.jpg";
+import tripleSeven from "@/assets/clients/triple-seven.jpg";
+import xclusiveYachts from "@/assets/clients/xclusive-yachts.jpg";
+import clearwaterShipping from "@/assets/clients/clearwater-shipping.jpg";
+import michiganPropulsion from "@/assets/clients/michigan-propulsion.jpg";
+import shipsBoatsMaintenance from "@/assets/clients/ships-boats-maintenance.jpg";
+import alHamoor from "@/assets/clients/al-hamoor.jpg";
+import alGaith from "@/assets/clients/al-gaith.jpg";
+import alkousMarine from "@/assets/clients/alkous-marine.jpg";
+import liwaShipbuilding from "@/assets/clients/liwa-shipbuilding.png";
+import neaShipYacht from "@/assets/clients/nea-ship-yacht.jpg";
+import tourDubai from "@/assets/clients/tour-dubai.jpg";
+import almazrooeiBoats from "@/assets/clients/almazrooei-boats.jpg";
+import mayaMaritime from "@/assets/clients/maya-maritime.jpg";
+import neptuneDiving from "@/assets/clients/neptune-diving.jpg";
+import ajplShip from "@/assets/clients/ajpl-ship.jpg";
+import hydroSports from "@/assets/clients/hydro-sports.jpg";
+import amShipyard from "@/assets/clients/am-shipyard.jpg";
+import dgSeaLeisure from "@/assets/clients/dg-sea-leisure.png";
+import ibharMarine from "@/assets/clients/ibhar-marine.jpg";
+import solasMarine from "@/assets/clients/solas-marine.png";
 
 const clients = [
-  { name: "Liwa Marine Services", icon: Ship },
-  { name: "Xclusive Yachts", icon: Sailboat },
-  { name: "AH Marine", icon: Anchor },
-  { name: "Alkous Marine", icon: Waves },
-  { name: "Sealight Marine Equipment", icon: Radio },
-  { name: "Sea Safari Cruises LLC", icon: Sailboat },
-  { name: "Blue Iris Marine Services", icon: Compass },
-  { name: "Quest Marine", icon: Navigation },
-  { name: "Trio Marine", icon: Ship },
-  { name: "Triple Seven Solutions LLC", icon: Star },
-  { name: "AGNN Marine Services", icon: Anchor },
-  { name: "Xiangyun Ship Management Limited", icon: Container },
-  { name: "Algaith Boats", icon: Activity },
-  { name: "Clear Water Shipping", icon: Container },
-  { name: "Onda Leisure Yachts & Boats Rental L.L.C", icon: Sailboat },
+  { name: "Liwa Marine Services", logo: liwaMarine },
+  { name: "AH Marine", logo: ahMarine },
+  { name: "Sea Safari Cruises LLC", logo: seaSafari },
+  { name: "Blue Iris Marine Services", logo: blueIris },
+  { name: "Quest Marine", logo: questMarine },
+  { name: "Trio Marine", logo: trioMarine },
+  { name: "Triple Seven Solutions LLC", logo: tripleSeven },
+  { name: "Xclusive Yachts", logo: xclusiveYachts },
+  { name: "ClearWater Shipping", logo: clearwaterShipping },
+  { name: "Michigan Propulsion", logo: michiganPropulsion },
+  { name: "Ships & Boats Maintenance", logo: shipsBoatsMaintenance },
+  { name: "Al Hamoor Restaurant Cruises", logo: alHamoor },
+  { name: "Al Gaith Boats", logo: alGaith },
+  { name: "Alkous Marine", logo: alkousMarine },
+  { name: "Liwa Shipbuilding LLC", logo: liwaShipbuilding },
+  { name: "NEA Ship and Yacht Design", logo: neaShipYacht },
+  { name: "Tour Dubai", logo: tourDubai },
+  { name: "Almazrooei Boats", logo: almazrooeiBoats },
+  { name: "Maya Maritime Ship Management", logo: mayaMaritime },
+  { name: "Neptune Diving Centre", logo: neptuneDiving },
+  { name: "AJPL Ship Management", logo: ajplShip },
+  { name: "Hydro Sports Yachts & Boats", logo: hydroSports },
+  { name: "AM Shipyard", logo: amShipyard },
+  { name: "DG Sea Leisure", logo: dgSeaLeisure },
+  { name: "Ibhar Marine Services", logo: ibharMarine },
+  { name: "Solas Marine Services", logo: solasMarine },
 ];
 
 const ClientLogos = () => {
+  // Split clients into two rows
+  const firstRow = clients.slice(0, Math.ceil(clients.length / 2));
+  const secondRow = clients.slice(Math.ceil(clients.length / 2));
+
   return (
     <section className="py-20 bg-muted overflow-hidden">
       <div className="container mx-auto px-4 mb-12">
@@ -31,18 +71,17 @@ const ClientLogos = () => {
       {/* Top Row - Scrolling Left */}
       <div className="relative mb-8">
         <div className="flex animate-scroll-left">
-          {[...clients, ...clients].map((client, index) => (
+          {[...firstRow, ...firstRow].map((client, index) => (
             <div
               key={`top-${index}`}
-              className="flex-shrink-0 w-[200px] mx-4"
+              className="flex-shrink-0 w-[220px] mx-4"
             >
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border">
-                <div className="flex flex-col items-center text-center gap-3">
-                  <client.icon className="h-12 w-12 text-primary group-hover:text-secondary transition-colors" />
-                  <span className="text-sm font-medium text-foreground leading-tight">
-                    {client.name}
-                  </span>
-                </div>
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border h-[120px] flex items-center justify-center">
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="max-h-[90px] max-w-[180px] w-auto h-auto object-contain"
+                />
               </div>
             </div>
           ))}
@@ -52,18 +91,17 @@ const ClientLogos = () => {
       {/* Bottom Row - Scrolling Right */}
       <div className="relative">
         <div className="flex animate-scroll-right">
-          {[...clients, ...clients].map((client, index) => (
+          {[...secondRow, ...secondRow].map((client, index) => (
             <div
               key={`bottom-${index}`}
-              className="flex-shrink-0 w-[200px] mx-4"
+              className="flex-shrink-0 w-[220px] mx-4"
             >
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border">
-                <div className="flex flex-col items-center text-center gap-3">
-                  <client.icon className="h-12 w-12 text-primary group-hover:text-secondary transition-colors" />
-                  <span className="text-sm font-medium text-foreground leading-tight">
-                    {client.name}
-                  </span>
-                </div>
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border h-[120px] flex items-center justify-center">
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="max-h-[90px] max-w-[180px] w-auto h-auto object-contain"
+                />
               </div>
             </div>
           ))}

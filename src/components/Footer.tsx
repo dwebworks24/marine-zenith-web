@@ -21,7 +21,7 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl overflow-x-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {/* Column 1 - Logo, About & Social Media */}
           <div className="min-w-0">
             <div className="bg-white p-4 rounded-lg shadow-lg inline-block mb-5">
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="min-w-0 lg:pr-2">
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Quick Links</h3>
             <ul className="space-y-3">
               <li>
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
 
           {/* Column 3 - All Services in 2 Columns */}
-          <div className="min-w-0 lg:-ml-8">
+          <div className="min-w-0 lg:-ml-12">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Our Services</h3>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3">
               <ul className="space-y-3">

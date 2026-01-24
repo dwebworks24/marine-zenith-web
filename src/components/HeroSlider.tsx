@@ -44,9 +44,8 @@ const HeroSlider = () => {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div className="absolute inset-0">
             <img
@@ -54,7 +53,7 @@ const HeroSlider = () => {
               alt={slide.title}
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-black/30 pointer-events-none" />
           </div>
 
           <div className="relative h-full flex items-center px-4">
@@ -72,17 +71,17 @@ const HeroSlider = () => {
                 {index === 0 ? "Expert Maritime Solutions & Consultancy Services" : slide.subtitle}
               </p>
               {index === 0 && (
-                <div className="flex flex-wrap gap-4">
-                  <Link to="/services">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:scale-105 transition-transform text-white shadow-lg">
+                <div className="flex flex-wrap gap-4 relative z-20">
+                  <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent hover:scale-105 transition-transform text-white shadow-lg">
+                    <Link to="/services">
                       Explore Services
-                    </Button>
-                  </Link>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary bg-white/10 backdrop-blur-sm">
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary bg-white/10 backdrop-blur-sm">
+                    <Link to="/contact">
                       Contact Us
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               )}
             </div>
@@ -116,9 +115,8 @@ const HeroSlider = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all ${
-              index === currentSlide ? "bg-white w-8" : "bg-white/50 w-2"
-            }`}
+            className={`h-2 rounded-full transition-all ${index === currentSlide ? "bg-white w-8" : "bg-white/50 w-2"
+              }`}
           />
         ))}
       </div>

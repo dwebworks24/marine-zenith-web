@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -35,17 +36,30 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await emailjs.send(
+        "service_km3nilv",
+        "template_lo0dzkh",
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+        },
+        "zK7PxPCjSdKZ6YEfl"
+      );
+
       toast({
-        title: "Thank you for contacting us!",
+        title: "Message sent successfully!",
         description: "We'll get back to you within 24 hours.",
       });
+
       setFormData({
         name: "",
         email: "",
@@ -54,7 +68,16 @@ const Contact = () => {
         service: "",
         message: "",
       });
-    }, 1500);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error sending message",
+        description: "Please try again later or contact us directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {

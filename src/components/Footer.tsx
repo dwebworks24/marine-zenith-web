@@ -229,7 +229,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8 mt-10">
           <div className="text-center">
             <p className="text-sm text-gray-500">
-              © 2025 Agile Marine Consultancy. All rights reserved.
+              © 2026 Agile Marine Consultancy. All rights reserved.
             </p>
           </div>
         </div>

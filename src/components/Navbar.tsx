@@ -57,7 +57,7 @@ const Navbar = () => {
         { name: "Green Technology & Sustainability", path: "/services/green-technology" },
       ]
     },
-    { name: "Projects", path: "/projects" },
+    // { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -73,7 +73,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo with white background */}
           <Link to="/" className="flex items-center">
-            <div className="bg-white px-4 py-2 rounded-lg shadow-md">
+            <div className="">
               <img src={logo} alt="Agile Marine Consultancy" className="h-14 md:h-16" style={{ width: 'auto', maxWidth: '180px' }} />
             </div>
           </Link>

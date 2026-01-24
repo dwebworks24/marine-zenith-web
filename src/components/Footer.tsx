@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="min-w-0">
+          <div className="min-w-0 lg:pr-4">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Quick Links</h3>
             <ul className="space-y-3">
               <li>
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
 
           {/* Column 3 - All Services in 2 Columns */}
-          <div className="min-w-0">
+          <div className="min-w-0 lg:-ml-4">
             <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-[#1572B9] inline-block">Our Services</h3>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3">
               <ul className="space-y-3">

@@ -109,21 +109,6 @@ All colors MUST be HSL.
     font-weight: 700;
   }
   
-  /* Global paragraph justification */
-  p:not(.whitespace-nowrap),
-  .description,
-  .content-text,
-  .body-text {
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
-  }
-
-  @media (max-width: 767px) {
-    p:not(.whitespace-nowrap) {
-      text-align: left;
-    }
-  }
 }
 
 @layer components {

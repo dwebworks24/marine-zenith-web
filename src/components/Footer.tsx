@@ -21,7 +21,7 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl overflow-x-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1 - Logo, About & Social Media */}
           <div className="min-w-0">
             <div className="bg-white p-4 rounded-lg shadow-lg inline-block mb-5">

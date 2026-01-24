@@ -76,7 +76,7 @@ const ClientLogos = () => {
               key={`top-${index}`}
               className="flex-shrink-0 w-[220px] mx-4"
             >
-              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border h-[120px] flex items-center justify-center">
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group border border-border h-[120px] flex items-center justify-center">
                 <img 
                   src={client.logo} 
                   alt={client.name}
@@ -96,7 +96,7 @@ const ClientLogos = () => {
               key={`bottom-${index}`}
               className="flex-shrink-0 w-[220px] mx-4"
             >
-              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 grayscale hover:grayscale-0 group border border-border h-[120px] flex items-center justify-center">
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group border border-border h-[120px] flex items-center justify-center">
                 <img 
                   src={client.logo} 
                   alt={client.name}

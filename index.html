@@ -14,11 +14,26 @@
     <meta property="og:title" content="Agile Marine Consultancy | Maritime Solutions & Engineering" />
     <meta property="og:description" content="Expert maritime solutions and consultancy services. Naval Architecture, Project Management, Regulatory Compliance, and Green Technology." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/favicon.jpg" />
+
+    <link rel="canonical" href="https://www.agilemarineconsultancy.ae/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@AgileMarineConsultancy" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image" content="/favicon.jpg" />
+    <script type="text/javascript">
+      // SPA redirect support for static hosts (e.g. GitHub Pages)
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
   </head>
 
   <body>
